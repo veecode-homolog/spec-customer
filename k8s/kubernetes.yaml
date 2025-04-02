@@ -1,0 +1,156 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    konghq.com/methods: GET
+    konghq.com/regex-priority: "200"
+    konghq.com/strip-path: "false"
+    konghq.com/tags: ""
+    konghq.com/preserve-host: "false"
+  name: spec-customer-customer-api-customer-api-customers-get
+spec:
+  ingressClassName: kong
+  rules:
+    - http:
+        paths:
+          - backend:
+              service:
+                name: spec-customer
+                port:
+                  number: 80
+            path: /~//customers$
+            pathType: ImplementationSpecific
+      host: vee.codes
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    konghq.com/methods: PATCH
+    konghq.com/regex-priority: "200"
+    konghq.com/strip-path: "false"
+    konghq.com/tags: ""
+    konghq.com/preserve-host: "false"
+  name: spec-customer-customer-api-customer-api-customers-patch
+spec:
+  ingressClassName: kong
+  rules:
+    - http:
+        paths:
+          - backend:
+              service:
+                name: spec-customer
+                port:
+                  number: 80
+            path: /~//customers$
+            pathType: ImplementationSpecific
+      host: vee.codes
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    konghq.com/methods: POST
+    konghq.com/regex-priority: "200"
+    konghq.com/strip-path: "false"
+    konghq.com/tags: ""
+    konghq.com/preserve-host: "false"
+  name: spec-customer-customer-api-customer-api-customers-post
+spec:
+  ingressClassName: kong
+  rules:
+    - http:
+        paths:
+          - backend:
+              service:
+                name: spec-customer
+                port:
+                  number: 80
+            path: /~//customers$
+            pathType: ImplementationSpecific
+      host: vee.codes
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    konghq.com/methods: DELETE
+    konghq.com/regex-priority: "100"
+    konghq.com/strip-path: "false"
+    konghq.com/tags: ""
+    konghq.com/preserve-host: "false"
+  name: spec-customer-customer-api-customer-api-customers-customerid-delete
+spec:
+  ingressClassName: kong
+  rules:
+    - http:
+        paths:
+          - backend:
+              service:
+                name: spec-customer
+                port:
+                  number: 80
+            path: /~//customers/(?<customerid>[^#?/]+)$
+            pathType: ImplementationSpecific
+      host: vee.codes
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    konghq.com/methods: GET
+    konghq.com/regex-priority: "100"
+    konghq.com/strip-path: "false"
+    konghq.com/tags: ""
+    konghq.com/preserve-host: "false"
+  name: spec-customer-customer-api-customer-api-customers-customerid-get
+spec:
+  ingressClassName: kong
+  rules:
+    - http:
+        paths:
+          - backend:
+              service:
+                name: spec-customer
+                port:
+                  number: 80
+            path: /~//customers/(?<customerid>[^#?/]+)$
+            pathType: ImplementationSpecific
+      host: vee.codes
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    konghq.com/methods: GET
+    konghq.com/regex-priority: "200"
+    konghq.com/strip-path: "false"
+    konghq.com/tags: ""
+    konghq.com/preserve-host: "false"
+  name: spec-customer-customer-api-customer-api-health-get
+spec:
+  ingressClassName: kong
+  rules:
+    - http:
+        paths:
+          - backend:
+              service:
+                name: spec-customer
+                port:
+                  number: 80
+            path: /~//health$
+            pathType: ImplementationSpecific
+      host: vee.codes
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    konghq.com/path: /
+    konghq.com/protocol: http
+  name: spec-customer
+spec:
+  type: ExternalName
+  externalName: api-customer-8izo.onrender.com
+---
+
